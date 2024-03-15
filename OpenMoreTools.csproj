@@ -56,6 +56,9 @@
   <PropertyGroup>
     <ApplicationIcon>Assets\Ico\1.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>OpenMoreTools.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
