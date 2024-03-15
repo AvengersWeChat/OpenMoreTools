@@ -29,14 +29,14 @@ namespace OpenMoreTools.Windows
         public MainWindow()
         {
             InitializeComponent();
-            
+
             Title = "Open More Tools 多开工具 v" + localVer.ToString();
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            RadioWechat.Tag = new AppModel { Name = "WeChat", SoftwarePath = @"Software\\Tencent\\WeChat", HKey = "InstallPath" ,Short="微信",Identifier = "_WeChat_App_Instance_Identity_Mutex_Name" };
-            RadioWeWork.Tag = new AppModel { Name = "WXWork", SoftwarePath = @"Software\\Tencent\\WXWork", HKey = "Executable"  ,Short="企微", Identifier = "Tencent.WeWork.ExclusiveObject" };
+            RadioWechat.Tag = new AppModel { Name = "WeChat", SoftwarePath = @"Software\\Tencent\\WeChat", HKey = "InstallPath", Short = "微信", Identifier = "_WeChat_App_Instance_Identity_Mutex_Name" };
+            RadioWeWork.Tag = new AppModel { Name = "WXWork", SoftwarePath = @"Software\\Tencent\\WXWork", HKey = "Executable", Short = "企微", Identifier = "Tencent.WeWork.ExclusiveObject" };
             RadioDingTalk.Tag = new AppModel { Name = "DingTalk", SoftwarePath = @"Software\\DingTalk\\Scheme", HKey = "钉钉", Short = "钉钉", Identifier = "DingTalk" };
             RadioWechat.IsChecked = true;
 
@@ -49,12 +49,12 @@ namespace OpenMoreTools.Windows
 
                 DataContext = new { UpdateData = $"[ 当前已经是最新版本 ]", UpdateColour = "CadetBlue" };
             }
-            
+
         }
 
         private async Task Update()
         {
-           
+
             string version = await Util.Get("https://api.github.com/repos/AvengersWeChat/OpenMoreTools/releases/latest");
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             TagResponseModel res = serializer.Deserialize<TagResponseModel>(version);
@@ -62,7 +62,8 @@ namespace OpenMoreTools.Windows
             Console.WriteLine(res.Name);
             Version serverVer = new Version(res.Name);
             int result = serverVer.CompareTo(localVer);
-            if (result > 0) {
+            if (result > 0)
+            {
                 DataContext = new { UpdateData = $"[ 点击下载最新版本 {res.Name} ]", UpdateColour = "Red" };
             }
             else
@@ -102,30 +103,26 @@ namespace OpenMoreTools.Windows
                     {
                         TextBoxInstallPath.Text = program.GetInstallPath();
                     }
-                    catch (Exception  ex)
+                    catch (Exception ex)
                     {
                         throw new Exception(ex.Message);
                     }
-                    
+
                     //TextBlockVersion.Text = modifier.GetVersion();
                     BtnOpenApp.Content = "打开" + program.Config.Short;
 
                     Console.WriteLine($"路径：{TextBoxInstallPath.Text}");
                     Console.WriteLine($"版本：{TextBlockVersion.Text}");
                 }
-               
+
 
             }
         }
 
         private void Button_Open_Click(object sender, RoutedEventArgs e)
         {
-          
-            if (program.Multiple())
-            {
-                Util.OpenApp(program.Config.InstallPath);
-            }
-
+            program.Multiple();
+            Util.OpenApp(program.Config.InstallPath);
         }
 
         private void Button_Path_Click(object sender, RoutedEventArgs e)
@@ -141,7 +138,7 @@ namespace OpenMoreTools.Windows
                 // 确保所选文件确实为.exe文件
                 if (System.IO.Path.GetExtension(selectedFilePath).ToLower() == ".exe")
                 {
-                   TextBoxInstallPath.Text = selectedFilePath;
+                    TextBoxInstallPath.Text = selectedFilePath;
                 }
                 else
                 {
@@ -238,7 +235,7 @@ namespace OpenMoreTools.Windows
             Process.Start(new ProcessStartInfo("https://github.com/AvengersWeChat/OpenMoreTools/releases"));
         }
 
-        
+
         private object GetCheckedRadio()
         {
             if ((bool)RadioWechat.IsChecked)
