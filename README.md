@@ -3,7 +3,7 @@
 适用于 Windows 下 PC 版微信/企业微信/钉钉 多开。**支持最新版微信/企业微信/钉钉**。
 
 下载地址：
-**[⚡️点我下载最新版本](https://github.com/AvengersWeChat/OpenMoreTools/releases/download/v1.0.0/OpenMoreTools.exe)** 
+**[⚡️点我下载最新版本](https://github.com/AvengersWeChat/OpenMoreTools/releases/download/v1.0.2/OpenMoreTools.rar)** 
 
 ## 截图
 
@@ -16,4 +16,6 @@
 
 ## 打赏
 
-![Reward](https://raw.githubusercontent.com/AvengersWeChat/OpenMoreTools/main/Assets/Png/reward.png)
+<!-- ![Reward](https://raw.githubusercontent.com/AvengersWeChat/OpenMoreTools/main/Assets/Png/reward.png) -->
+
+<img src="https://raw.githubusercontent.com/AvengersWeChat/OpenMoreTools/main/Assets/Png/reward.png" width="200" height="200">
