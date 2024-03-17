@@ -30,7 +30,7 @@ namespace OpenMoreTools.Windows
         {
             InitializeComponent();
 
-            Title = "Open More Tools 多开工具 v" + localVer.ToString();
+            Title = "Open More Tools 多开工具 v" + $"{localVer.Major}.{localVer.Minor}.{localVer.Build}";
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
