@@ -44,33 +44,9 @@ namespace OpenMoreTools
 
 
 
-
-
     internal class We
     {
 
-        public static bool ElevatePrivileges()
-        {
-            int TOKEN_QUERY = 0x0008;
-            int TOKEN_ADJUST_PRIVILEGES = 0x0020;
-            uint SE_PRIVILEGE_ENABLED = 0x00000002;
-            string SE_DEBUG_NAME = "SeDebugPrivilege";
-
-            IntPtr hPToken = IntPtr.Zero, hProcess = IntPtr.Zero;
-            TOKEN_PRIVILEGE tkp = new TOKEN_PRIVILEGE
-            {
-                PrivilegeCount = 1,
-            };
-            if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, ref hPToken)) return false;
-            if (!LookupPrivilegeValue(null, SE_DEBUG_NAME, ref tkp.Privilege.Luid)) return false;
-
-            tkp.Privilege.Attributes = SE_PRIVILEGE_ENABLED;
-
-            if (!AdjustTokenPrivileges(hPToken, false, ref tkp, Marshal.SizeOf<TOKEN_PRIVILEGE>(), IntPtr.Zero, IntPtr.Zero)) return false;
-            return true;
-        }
-
-      
 
         public static void Test()
         {
@@ -91,17 +67,6 @@ namespace OpenMoreTools
         public static void Multiple()
         {
             string appName = "WeChat";
-
-            //进程提权
-            bool bl = ElevatePrivileges();
-            if (!bl)
-            {
-                Console.WriteLine("进程提权失败");
-            }
-
-
-
-
             try
             {
 
@@ -144,12 +109,6 @@ namespace OpenMoreTools
                 Console.WriteLine(ex.ToString());
             }
             
-
-
-
-
-
-
             return;
 
 

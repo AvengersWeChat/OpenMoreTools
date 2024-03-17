@@ -121,6 +121,12 @@ namespace OpenMoreTools.Windows
 
         private void Button_Open_Click(object sender, RoutedEventArgs e)
         {
+            
+            bool bl = Util.ElevatePrivileges();
+            if (!bl)
+            {
+                Console.WriteLine("进程提权失败");
+            }
             program.Multiple();
             Util.OpenApp(program.Config.InstallPath);
         }
